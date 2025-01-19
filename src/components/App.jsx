@@ -1,11 +1,12 @@
-import { CssBaseline } from '@mui/material';
+// import { CssBaseline } from '@mui/material';
 // import { Route, Switch } from 'react-router-dom';
 
 const App = () => (
   <div>
-    <CssBaseline />
+    {/* <CssBaseline /> */}
     <h1>Hello, World - Fimpire is ready!</h1>
   </div>
 );
 
 export default App;
+
