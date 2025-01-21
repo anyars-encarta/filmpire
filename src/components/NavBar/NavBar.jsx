@@ -63,7 +63,7 @@ const NavBar = () => {
                 onClick={() => {}}
               >
                 {!isMobile && <>My Movies &nbsp;</>}
-                <Avatar 
+                <Avatar
                   style={{ width: 30, height: 30 }}
                   alt="Profile"
                   src="https://avatars.githubusercontent.com/u/4723117?v=4"
