@@ -1,7 +1,7 @@
 export const categories = [
-  { label: 'Popular', value: 'popular' },
-  { label: 'Top Rated', value: 'top_rated' },
-  { label: 'Upcoming', value: 'upcoming' },
+  { name: 'Popular', value: 'popular' },
+  { name: 'Top Rated', value: 'top_rated' },
+  { name: 'Upcoming', value: 'upcoming' },
 ];
 
 export const demoCategories = [
