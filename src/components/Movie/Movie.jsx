@@ -42,6 +42,7 @@ Movie.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string,
     poster_path: PropTypes.string,
+    vote_average: PropTypes.number,
   }).isRequired,
   i: PropTypes.number.isRequired,
 };
