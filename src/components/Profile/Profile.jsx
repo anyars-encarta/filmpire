@@ -8,7 +8,8 @@ const Profile = () => {
 
   return (
     <div>
-      Profile for: {' '}
+      Profile for:
+      {' '}
       {user.username}
     </div>
   );
