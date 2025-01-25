@@ -16,7 +16,6 @@ import { setUser, userSelector } from '../../features/auth';
 
 const NavBar = () => {
   const { isAuthenticated, user } = useSelector(userSelector);
-  // const { isAuthenticated, user } = (state) => state.auth;
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
