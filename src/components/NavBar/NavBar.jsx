@@ -31,12 +31,10 @@ const NavBar = () => {
     const logInUser = async () => {
       if (token) {
         if (sessionIdFromLocalStorage) {
-          console.log(1);
           const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
 
           dispatch(setUser(userData));
         } else {
-          console.log(2);
           const sessionId = await createSessionId();
           localStorage.setItem('session_id', sessionId);
           const { data: userData } = await moviesApi.get(`/account?session_id=${sessionId}`);
