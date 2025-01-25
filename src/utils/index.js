@@ -35,9 +35,9 @@ export const createSessionId = async () => {
 
       const sessionId = data.session_id;
 
-      console.log('The data', sessionId);
-
       localStorage.setItem('session_id', sessionId);
+
+      window.location.href = '/';
 
       return sessionId;
     } catch (e) {
