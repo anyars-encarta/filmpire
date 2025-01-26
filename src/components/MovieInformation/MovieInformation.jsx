@@ -74,7 +74,7 @@ const MovieInformation = () => {
         <Grid item className={classes.containerSpaceAround}>
           <Box display="flex" alignItems="center">
             <Rating readOnly value={data?.vote_average / 2} precision={0.1} />
-            <Typography variant="subtitle1" gutterBottom style={{marginLeft: '10px'}}>
+            <Typography variant="subtitle1" gutterBottom style={{ marginLeft: '10px' }}>
               {data?.vote_average}
               &nbsp;/ 10
             </Typography>
