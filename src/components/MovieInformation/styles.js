@@ -53,4 +53,21 @@ export default makeStyles((theme) => ({
     filter: theme.palette.mode === 'dark' && 'invert(1)',
     marginRight: '10px',
   },
+
+  castImage: {
+    width: '100%',
+    maxWidth: '7em',
+    height: '8em',
+    objectFit: 'cover',
+    borderRadius: '10px',
+  },
+
+  buttonsContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
+  },
 }));
