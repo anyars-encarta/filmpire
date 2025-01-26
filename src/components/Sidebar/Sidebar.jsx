@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Divider, List, ListItemButton, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useStyles from './styles';
-import { categories, demoCategories } from '../../data';
+import { categories } from '../../data';
 import { useGetGenresQuery } from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
@@ -15,7 +15,6 @@ const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2f
 const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
 
 const Sidebar = ({ setMobileOpen }) => {
-  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
   const classes = useStyles();
   const theme = useTheme();
   const { data, isFetching } = useGetGenresQuery();
@@ -42,7 +41,7 @@ const Sidebar = ({ setMobileOpen }) => {
                 <img
                   src={genreIcons[name.toLowerCase()]}
                   alt={name}
-                  className={classes.genreImage}
+                  className={classes.genreImages}
                   height={30}
                 />
               </ListItemIcon>
@@ -68,7 +67,7 @@ const Sidebar = ({ setMobileOpen }) => {
                   <img
                     src={genreIcons[name.toLowerCase()]}
                     alt={name}
-                    className={classes.genreImage}
+                    className={classes.genreImages}
                     height={30}
                   />
                 </ListItemIcon>
