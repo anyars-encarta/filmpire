@@ -4,12 +4,12 @@ import { Grid } from '@mui/material';
 import useStyles from './styles';
 import { Movie } from '../index';
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, numberOfMovies }) => {
   const classes = useStyles();
 
   return (
     <Grid container className={classes.moviesContainer}>
-      {movies?.results?.map((movie, i) => (
+      {movies?.results?.slice(0, numberOfMovies).map((movie, i) => (
         <Movie key={i} movie={movie} i={i} />
       ))}
     </Grid>
@@ -26,6 +26,7 @@ MovieList.propTypes = {
       poster_path: PropTypes.string,
     })),
   }).isRequired,
+  numberOfMovies: PropTypes.number.isRequired,
 };
 
 export default MovieList;

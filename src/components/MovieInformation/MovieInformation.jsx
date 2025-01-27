@@ -23,10 +23,14 @@ import {
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { useGetMovieQuery } from '../../services/TMDB';
+import {
+  useGetMovieQuery,
+  useGetRecommendationsQuery,
+} from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
 import useStyles from './styles';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import { MovieList } from '../index';
 
 const MovieInformation = () => {
   const classes = useStyles();
@@ -34,6 +38,9 @@ const MovieInformation = () => {
   const dispatch = useDispatch();
 
   const { data, error, isFetching } = useGetMovieQuery(id);
+  const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ id, list: 'recommendations' });
+
+  console.log('Recommendations:', recommendations);
 
   const isMovieFavorited = true;
   const isMovieWatchlisted = true;
@@ -79,7 +86,11 @@ const MovieInformation = () => {
         <Grid item className={classes.containerSpaceAround}>
           <Box display="flex" alignItems="center">
             <Rating readOnly value={data?.vote_average / 2} precision={0.1} />
-            <Typography variant="subtitle1" gutterBottom style={{ marginLeft: '10px' }}>
+            <Typography
+              variant="subtitle1"
+              gutterBottom
+              style={{ marginLeft: '10px' }}
+            >
               {data?.vote_average}
               &nbsp;/ 10
             </Typography>
@@ -89,13 +100,20 @@ const MovieInformation = () => {
             {data?.runtime}
             min
             {' '}
-            {data?.spoken_languages.length > 0 ? `/ ${data?.spoken_languages[0].name}` : ''}
+            {data?.spoken_languages.length > 0
+              ? `/ ${data?.spoken_languages[0].name}`
+              : ''}
           </Typography>
         </Grid>
 
         <Grid item className={classes.genresContainer}>
           {data?.genres.map((genre) => (
-            <Link to="/" key={genre.id} className={classes.links} onClick={() => dispatch(selectGenreOrCategory(genre.id))}>
+            <Link
+              to="/"
+              key={genre.id}
+              className={classes.links}
+              onClick={() => dispatch(selectGenreOrCategory(genre.id))}
+            >
               <img
                 src={genreIcons[genre.name.toLowerCase()]}
                 alt={genre.name}
@@ -119,8 +137,9 @@ const MovieInformation = () => {
           Top Cast
         </Typography>
         <Grid item container spacing={2}>
-          {data && data.credits?.cast?.slice(0, 6).map((character, i) => (
-            character.profile_path && (
+          {data
+            && data.credits?.cast?.slice(0, 6).map(
+              (character, i) => character.profile_path && (
               <Grid
                 key={i}
                 item
@@ -142,19 +161,29 @@ const MovieInformation = () => {
                   {character?.character.split('/')[0]}
                 </Typography>
               </Grid>
-            )
-          ))}
+              ),
+            )}
         </Grid>
 
         <Grid item container style={{ marginTop: '2rem' }}>
           <div className={classes.buttonsContainer}>
             <Grid item xs={12} sm={6} className={classes.buttonsContainer}>
               <ButtonGroup size="medium" variant="contained">
-                <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>
+                <Button
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={data?.homepage}
+                  endIcon={<Language />}
+                >
                   Website
                 </Button>
 
-                <Button target="_blank" rel="noopener noreferrer" href={`https://www.imdb.com/title/${data?.imdb_id}/`} endIcon={<MovieIcon />}>
+                <Button
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://www.imdb.com/title/${data?.imdb_id}/`}
+                  endIcon={<MovieIcon />}
+                >
                   IMDB
                 </Button>
 
@@ -168,7 +197,9 @@ const MovieInformation = () => {
               <ButtonGroup size="medium" variant="contained">
                 <Button
                   onClick={addToFavorites}
-                  endIcon={isMovieFavorited ? <Favorite /> : <FavoriteBorderOutlined />}
+                  endIcon={
+                    isMovieFavorited ? <Favorite /> : <FavoriteBorderOutlined />
+                  }
                 >
                   {isMovieFavorited ? 'Unfavorite' : 'Add to Favorites'}
                 </Button>
@@ -177,17 +208,42 @@ const MovieInformation = () => {
                   onClick={addToWatchList}
                   endIcon={isMovieWatchlisted ? <Remove /> : <PlusOne />}
                 >
-                  {isMovieWatchlisted ? 'Remove from Watchlist' : 'Add to Watchlist'}
+                  {isMovieWatchlisted
+                    ? 'Remove from Watchlist'
+                    : 'Add to Watchlist'}
                 </Button>
 
-                <Button endIcon={<ArrowBack />} sx={{ borderColor: 'primary.main' }}>
-                  <Typography style={{ textDecoration: 'none' }} component={Link} to="/" color="inherit" variant="subtitle2">Back</Typography>
+                <Button
+                  endIcon={<ArrowBack />}
+                  sx={{ borderColor: 'primary.main' }}
+                >
+                  <Typography
+                    style={{ textDecoration: 'none' }}
+                    component={Link}
+                    to="/"
+                    color="inherit"
+                    variant="subtitle2"
+                  >
+                    Back
+                  </Typography>
                 </Button>
               </ButtonGroup>
             </Grid>
           </div>
         </Grid>
       </Grid>
+
+      <Box marginTop="5rem" width="100%">
+        <Typography variant="h3" gutterBottom align="center">
+          You might also like
+        </Typography>
+
+        {recommendations ? (
+          <MovieList movies={recommendations} numberOfMovies={10} />
+        ) : (
+          <Box align="center">Sorry, no recommendations found</Box>
+        )}
+      </Box>
     </Grid>
   );
 };
