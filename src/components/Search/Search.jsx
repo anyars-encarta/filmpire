@@ -24,6 +24,7 @@ const Search = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         variant="standard"
+        placeholder="Search movies..."
         InputProps={{
           className: classes.input,
           startAdornment: (

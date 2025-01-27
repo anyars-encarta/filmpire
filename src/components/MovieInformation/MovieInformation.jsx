@@ -244,6 +244,7 @@ const MovieInformation = () => {
           <Box align="center">Sorry, no recommendations found</Box>
         )}
       </Box>
+
     </Grid>
   );
 };
