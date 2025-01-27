@@ -1,9 +1,12 @@
 import { CssBaseline } from '@mui/material';
 import { Route, Switch } from 'react-router-dom';
 import {
-  MovieInformation, Actors, Movies, Profile, NavBar,
+  Actors, Profile,
 } from './index';
 import useStyles from './styles';
+import NavBar from './NavBar/NavBar';
+import Movies from './Movies/Movies';
+import MovieInformation from './MovieInformation/MovieInformation';
 
 const App = () => {
   const classes = useStyles();
