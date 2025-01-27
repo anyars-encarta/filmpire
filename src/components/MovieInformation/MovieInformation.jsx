@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Modal,
   Typography,
@@ -7,7 +7,6 @@ import {
   Grid,
   Box,
   CircularProgress,
-  useMediaQuery,
   Rating,
 } from '@mui/material';
 import {
@@ -21,8 +20,7 @@ import {
   ArrowBack,
 } from '@mui/icons-material';
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import {
   useGetMovieQuery,
   useGetRecommendationsQuery,
@@ -36,14 +34,13 @@ const MovieInformation = () => {
   const classes = useStyles();
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
   const { data, error, isFetching } = useGetMovieQuery(id);
-  const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ id, list: 'recommendations' });
+  const { data: recommendations } = useGetRecommendationsQuery({ id, list: 'recommendations' });
 
-  console.log('Recommendations:', recommendations);
-
-  const isMovieFavorited = true;
-  const isMovieWatchlisted = true;
+  const isMovieFavorited = false;
+  const isMovieWatchlisted = false;
 
   const addToFavorites = () => {};
 
@@ -139,9 +136,9 @@ const MovieInformation = () => {
         <Grid item container spacing={2}>
           {data
             && data.credits?.cast?.slice(0, 6).map(
-              (character, i) => character.profile_path && (
+              (character) => character.profile_path && (
               <Grid
-                key={i}
+                key={character.id}
                 item
                 xs={4}
                 md={2}
@@ -187,7 +184,7 @@ const MovieInformation = () => {
                   IMDB
                 </Button>
 
-                <Button onClick={() => {}} href="#" endIcon={<Theaters />}>
+                <Button onClick={() => setOpen(true)} href="#" endIcon={<Theaters />}>
                   Thriller
                 </Button>
               </ButtonGroup>
@@ -244,6 +241,25 @@ const MovieInformation = () => {
           <Box align="center">Sorry, no recommendations found</Box>
         )}
       </Box>
+
+      {data?.videos?.results && (
+        <Modal
+          closeAfterTransition
+          className={classes.modal}
+          open={open}
+          onClose={() => setOpen(false)}
+        >
+          {data?.videos?.results?.length > 0 && (
+          <iframe
+            autoPlay
+            className={classes.video}
+            title="trailer"
+            src={`https://www.youtube.com/embed/${data?.videos?.results[0]?.key}`}
+            allow="auotplay"
+          />
+          )}
+        </Modal>
+      )}
     </Grid>
   );
 };
