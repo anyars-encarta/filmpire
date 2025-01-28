@@ -5,11 +5,12 @@ import {
 import { useSelector } from 'react-redux';
 import { useGetMoviesQuery } from '../../services/TMDB';
 import { MovieList } from '../index';
+import useStyles from './styles';
+import Pagination from '../pagination/Pagination';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-
-  console.log(setPage);
+  const classes = useStyles();
 
   const {
     genreIdOrCategoryName, searchQuery,
@@ -42,7 +43,14 @@ const Movies = () => {
 
   return (
     <div>
+      <img
+        className={classes.image}
+        alt="Poster"
+        src={`https://image.tmdb.org/t/p/w500/${data.results[0].backdrop_path}`}
+      />
       <MovieList movies={data} />
+
+      <Pagination page={page} setPage={setPage} totalPages={data.total_pages} />
     </div>
   );
 };
