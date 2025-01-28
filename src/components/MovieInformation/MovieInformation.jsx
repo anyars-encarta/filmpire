@@ -95,11 +95,9 @@ const MovieInformation = () => {
 
           <Typography variant="h6" align="center" gutterBottom>
             {data?.runtime}
-            min
+            min | Language:
             {' '}
-            {data?.spoken_languages.length > 0
-              ? `/ ${data?.spoken_languages[0].name}`
-              : ''}
+            {data?.spoken_languages[0].name}
           </Typography>
         </Grid>
 
@@ -167,6 +165,7 @@ const MovieInformation = () => {
             <Grid item xs={12} sm={6} className={classes.buttonsContainer}>
               <ButtonGroup size="medium" variant="contained">
                 <Button
+                  variant="outlined"
                   target="_blank"
                   rel="noopener noreferrer"
                   href={data?.homepage}
@@ -176,6 +175,7 @@ const MovieInformation = () => {
                 </Button>
 
                 <Button
+                  variant="outlined"
                   target="_blank"
                   rel="noopener noreferrer"
                   href={`https://www.imdb.com/title/${data?.imdb_id}/`}
@@ -184,7 +184,12 @@ const MovieInformation = () => {
                   IMDB
                 </Button>
 
-                <Button onClick={() => setOpen(true)} href="#" endIcon={<Theaters />}>
+                <Button
+                  variant="outlined"
+                  onClick={() => setOpen(true)}
+                  href="#"
+                  endIcon={<Theaters />}
+                >
                   Thriller
                 </Button>
               </ButtonGroup>
@@ -193,6 +198,7 @@ const MovieInformation = () => {
             <Grid item xs={12} sm={6} className={classes.buttonsContainer}>
               <ButtonGroup size="medium" variant="contained">
                 <Button
+                  variant="outlined"
                   onClick={addToFavorites}
                   endIcon={
                     isMovieFavorited ? <Favorite /> : <FavoriteBorderOutlined />
@@ -202,6 +208,7 @@ const MovieInformation = () => {
                 </Button>
 
                 <Button
+                  variant="outlined"
                   onClick={addToWatchList}
                   endIcon={isMovieWatchlisted ? <Remove /> : <PlusOne />}
                 >
@@ -211,6 +218,7 @@ const MovieInformation = () => {
                 </Button>
 
                 <Button
+                  variant="outlined"
                   endIcon={<ArrowBack />}
                   sx={{ borderColor: 'primary.main' }}
                 >
