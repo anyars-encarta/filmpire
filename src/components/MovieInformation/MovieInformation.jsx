@@ -95,11 +95,9 @@ const MovieInformation = () => {
 
           <Typography variant="h6" align="center" gutterBottom>
             {data?.runtime}
-            min
+            min | Language:
             {' '}
-            {data?.spoken_languages.length > 0
-              ? `/ ${data?.spoken_languages[0].name}`
-              : ''}
+            {data?.spoken_languages[0].name}
           </Typography>
         </Grid>
 
