@@ -41,7 +41,7 @@ const Sidebar = () => {
                 <img
                   src={genreIcons[name.toLowerCase()]}
                   alt={name}
-                  className={classes.genreImages}
+                  className={classes.genreImage}
                   height={30}
                 />
               </ListItemIcon>
@@ -67,7 +67,7 @@ const Sidebar = () => {
                   <img
                     src={genreIcons[name.toLowerCase()]}
                     alt={name}
-                    className={classes.genreImages}
+                    className={classes.genreImage}
                     height={30}
                   />
                 </ListItemIcon>
