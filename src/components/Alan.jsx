@@ -20,7 +20,7 @@ const useAlan = () => {
         }
       },
     });
-  }, [setMode]);
+  }, []);
 };
 
 export default useAlan;
