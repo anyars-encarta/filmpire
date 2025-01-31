@@ -18,14 +18,14 @@ const MovieBanner = () => {
     data,
   } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
 
-  const randomIndex = Math.floor(Math.random() * data.results.length);
+  const randomIndex = Math.floor(Math.random() * data?.results.length);
 
   return (
     <Box
       className={classes.bannerContainer}
       style={
         {
-          backgroundImage: `url(https://image.tmdb.org/t/p/w500/${data.results[randomIndex].backdrop_path})`,
+          backgroundImage: `url(https://image.tmdb.org/t/p/w500/${data?.results[randomIndex].backdrop_path})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
