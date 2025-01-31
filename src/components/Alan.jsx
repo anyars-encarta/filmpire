@@ -16,7 +16,7 @@ const useAlan = () => {
     alanBtn({
       key: process.env.REACT_APP_ALAN_KEY,
       onCommand: ({
-        command, mode, genres, genreOrCategory, query
+        command, mode, genres, genreOrCategory, query,
       }) => {
         if (command === 'chooseGenre') {
           const foundGenre = genres.find((g) => (
