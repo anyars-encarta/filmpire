@@ -6,11 +6,10 @@ import { fetchToken } from '../utils';
 
 const useAlan = () => {
   const { setMode } = useContext(ColorModeContext);
-  const alanKey = process.env.REACT_APP_ALAN_KEY;
 
   useEffect(() => {
     alanBtn({
-      key: alanKey,
+      key: process.env.REACT_APP_ALAN_KEY,
       onCommand: ({ command, mode }) => {
         if (command === 'changeMode') {
           if (mode === 'light') {
@@ -29,7 +28,7 @@ const useAlan = () => {
         }
       },
     });
-  }, []);
+  }, [setMode]);
 };
 
 export default useAlan;
