@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import { ColorModeContext } from '../utils/ToggleColorMode';
 import { fetchToken } from '../utils';
-import { selectGenreOrCategory } from '../features/currentGenreOrCategory';
+import { searchMovie, selectGenreOrCategory } from '../features/currentGenreOrCategory';
 
 const useAlan = () => {
   const { setMode } = useContext(ColorModeContext);
@@ -16,7 +16,7 @@ const useAlan = () => {
     alanBtn({
       key: process.env.REACT_APP_ALAN_KEY,
       onCommand: ({
-        command, mode, genres, genreOrCategory,
+        command, mode, genres, genreOrCategory, query
       }) => {
         if (command === 'chooseGenre') {
           const foundGenre = genres.find((g) => (
@@ -47,6 +47,8 @@ const useAlan = () => {
           localStorage.removeItem('session_id');
 
           window.location.href = '/';
+        } else if (command === 'search') {
+          dispatch(searchMovie(query));
         }
       },
     });
