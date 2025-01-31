@@ -5,10 +5,13 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 export const ColorModeContext = createContext();
 
 const ToggleColorMode = ({ children }) => {
-  const [mode, setMode] = useState('light');
+  const currentTheme = localStorage.getItem('theme');
+
+  const [mode, setMode] = useState(currentTheme);
 
   const toggleColorMode = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode(currentTheme === 'light' ? 'dark' : 'light');
+    localStorage.setItem('theme', mode === 'light' ? 'dark' : 'light');
   };
 
   const theme = useMemo(() => createTheme({
