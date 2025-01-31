@@ -46,7 +46,7 @@ const NavBar = () => {
     };
 
     logInUser();
-  }, [token]);
+  }, [dispatch, sessionIdFromLocalStorage, token]);
 
   return (
     <>
