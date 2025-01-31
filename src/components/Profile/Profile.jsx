@@ -21,13 +21,13 @@ const Profile = () => {
   useEffect(() => {
     refetchFavorites();
     refetchWatchlisted();
-  }, []);
+  }, [refetchFavorites, refetchWatchlisted]);
 
   const logout = () => {
-    // localStorage.removeItem('accountId');
-    // localStorage.removeItem('request_token');
-    // localStorage.removeItem('session_id');
-    localStorage.clear();
+    localStorage.removeItem('accountId');
+    localStorage.removeItem('request_token');
+    localStorage.removeItem('session_id');
+    // localStorage.clear();
     window.location.href = '/';
   };
 

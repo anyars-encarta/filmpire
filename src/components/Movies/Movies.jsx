@@ -3,14 +3,15 @@ import {
   Box, CircularProgress, Typography, useMediaQuery,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
+
 import { useGetMoviesQuery } from '../../services/TMDB';
 import { MovieList } from '../index';
-import useStyles from './styles';
+
 import Pagination from '../pagination/Pagination';
+import MovieBanner from '../MovieBanner/MovieBanner';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const classes = useStyles();
 
   const {
     genreIdOrCategoryName, searchQuery,
@@ -46,11 +47,8 @@ const Movies = () => {
 
   return (
     <div>
-      <img
-        className={classes.image}
-        alt="Poster"
-        src={`https://image.tmdb.org/t/p/w500/${data.results[0].backdrop_path}`}
-      />
+      <MovieBanner />
+
       <MovieList movies={data} numberOfMovies={numberOfMovies} />
 
       <Pagination page={page} setPage={setPage} totalPages={data.total_pages} />
