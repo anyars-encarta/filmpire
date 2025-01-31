@@ -50,7 +50,7 @@ const useAlan = () => {
         }
       },
     });
-  }, [setMode]);
+  }, [setMode, dispatch, history]);
 };
 
 export default useAlan;
