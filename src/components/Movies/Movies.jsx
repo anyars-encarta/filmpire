@@ -8,7 +8,8 @@ import { useGetMoviesQuery } from '../../services/TMDB';
 import { MovieList } from '../index';
 
 import Pagination from '../pagination/Pagination';
-import MovieBanner from '../MovieBanner/MovieBanner';
+import FeaturedMovie from '../FeaturedMovie/FeaturedMovie';
+// import MovieBanner from '../MovieBanner/MovieBanner';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -21,7 +22,7 @@ const Movies = () => {
   } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
 
   const lg = useMediaQuery((theme) => theme.breakpoints.only('lg'));
-  const numberOfMovies = lg ? 16 : 18;
+  const numberOfMovies = lg ? 17 : 19;
 
   if (isFetching) {
     return (
@@ -47,9 +48,10 @@ const Movies = () => {
 
   return (
     <div>
-      <MovieBanner />
+      <FeaturedMovie movie={data.results[0]} />
+      {/* <MovieBanner /> */}
 
-      <MovieList movies={data} numberOfMovies={numberOfMovies} />
+      <MovieList movies={data} numberOfMovies={numberOfMovies} excludeFirst />
 
       <Pagination page={page} setPage={setPage} totalPages={data.total_pages} />
     </div>
