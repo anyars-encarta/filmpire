@@ -39,7 +39,7 @@
 <!-- INTRO -->
 # 📖 Filmpire<a name="about-project"></a>
 
-> Filmpire is a Movie collection app developed that allows users to search for a wide variety of movies, ranging from action, to comedy, drama, adventure, and all genre of movies. Users have the ability to favorite movies and add them to a watchlist. Users could also watch movie trailers. The entire movie collection is powered by the TMDB API. API.
+> Filmpire is a Movie collection app developed that allows users to search for a wide variety of movies, ranging from action, to comedy, drama, adventure, and all genre of movies. Users have the ability to favorite movies and add them to a watchlist. Users could also watch movie trailers. The entire movie collection is powered by the TMDB API.
 
 ## 🛠 Built With <a name="built-with"></a>
 1. React
